@@ -1,124 +1,935 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="ST ENTERPRISE - Wedding & Event Decoration Items Manufacturer & Supplier in Meerut, Uttar Pradesh.">
-  <title>ST ENTERPRISE | Wedding & Event Decoration Items</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="description" content="S T ENTERPRISE - Wedding & Event Decoration Items Manufacturer & Supplier in Meerut, Uttar Pradesh.">
+
+<title>S T ENTERPRISE | Wedding & Event Decoration</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  font-family:Inter,Arial,sans-serif;
+  background:#090909;
+  color:#fff;
+  line-height:1.6;
+}
+
+a{
+  text-decoration:none;
+  color:inherit;
+}
+
+.container{
+  width:min(1150px,92%);
+  margin:auto;
+}
+
+/* NAVBAR */
+header{
+  position:fixed;
+  top:0;
+  left:0;
+  right:0;
+  z-index:100;
+  background:rgba(8,8,8,.94);
+  backdrop-filter:blur(15px);
+  border-bottom:1px solid rgba(212,175,55,.25);
+}
+
+.nav{
+  min-height:72px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+}
+
+.logo{
+  font-family:"Cormorant Garamond",serif;
+  font-size:28px;
+  font-weight:700;
+  letter-spacing:2px;
+  color:#d4af37;
+}
+
+.logo span{
+  color:#fff;
+}
+
+nav{
+  display:flex;
+  gap:25px;
+  font-size:14px;
+  font-weight:700;
+}
+
+nav a:hover{
+  color:#d4af37;
+}
+
+.nav-btn{
+  background:#d4af37;
+  color:#080808;
+  padding:11px 18px;
+  border-radius:30px;
+  font-size:13px;
+  font-weight:800;
+}
+
+/* HERO */
+.hero{
+  min-height:760px;
+  padding-top:72px;
+  display:flex;
+  align-items:center;
+  position:relative;
+  background:
+    linear-gradient(90deg,rgba(0,0,0,.92),rgba(0,0,0,.42)),
+    url("product-7.jpeg") center/cover;
+}
+
+.hero-content{
+  max-width:760px;
+  padding:90px 0;
+}
+
+.badge{
+  display:inline-block;
+  color:#d4af37;
+  border:1px solid rgba(212,175,55,.55);
+  padding:8px 14px;
+  border-radius:30px;
+  font-size:11px;
+  letter-spacing:2px;
+  font-weight:800;
+  margin-bottom:22px;
+}
+
+.hero h1{
+  font-family:"Cormorant Garamond",serif;
+  font-size:clamp(52px,8vw,88px);
+  line-height:.95;
+  margin-bottom:25px;
+}
+
+.hero h1 span{
+  color:#d4af37;
+}
+
+.hero p{
+  max-width:620px;
+  color:#ddd;
+  font-size:17px;
+  margin-bottom:32px;
+}
+
+.buttons{
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+}
+
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:14px 22px;
+  border-radius:30px;
+  font-size:13px;
+  font-weight:800;
+}
+
+.gold{
+  background:#d4af37;
+  color:#080808;
+}
+
+.dark-btn{
+  border:1px solid rgba(255,255,255,.45);
+  color:#fff;
+  background:rgba(0,0,0,.35);
+}
+
+.gold:hover{
+  background:#f0cf59;
+}
+
+/* SECTIONS */
+section{
+  padding:95px 0;
+}
+
+.heading{
+  text-align:center;
+  max-width:720px;
+  margin:0 auto 50px;
+}
+
+.heading small{
+  color:#d4af37;
+  letter-spacing:3px;
+  font-size:11px;
+  font-weight:800;
+}
+
+.heading h2{
+  font-family:"Cormorant Garamond",serif;
+  font-size:clamp(42px,6vw,64px);
+  line-height:1;
+  margin:12px 0 15px;
+}
+
+.heading p{
+  color:#aaa;
+  font-size:15px;
+}
+
+/* PRODUCTS */
+.products{
+  background:#0e0e0e;
+}
+
+.gallery{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
+}
+
+.card{
+  background:#151515;
+  border:1px solid rgba(212,175,55,.18);
+  border-radius:18px;
+  overflow:hidden;
+  transition:.3s;
+}
+
+.card:hover{
+  transform:translateY(-6px);
+  border-color:#d4af37;
+  box-shadow:0 15px 40px rgba(212,175,55,.12);
+}
+
+.card img{
+  display:block;
+  width:100%;
+  height:310px;
+  object-fit:cover;
+  background:#222;
+}
+
+.card-body{
+  padding:20px;
+}
+
+.card h3{
+  font-family:"Cormorant Garamond",serif;
+  font-size:28px;
+  margin-bottom:8px;
+}
+
+.card p{
+  color:#999;
+  font-size:12px;
+  margin-bottom:14px;
+}
+
+.card a{
+  color:#d4af37;
+  font-size:12px;
+  font-weight:800;
+}
+
+/* ABOUT */
+.about{
+  background:#090909;
+}
+
+.about-grid{
+  display:grid;
+  grid-template-columns:1.1fr .9fr;
+  gap:60px;
+  align-items:center;
+}
+
+.about h2{
+  font-family:"Cormorant Garamond",serif;
+  font-size:clamp(42px,6vw,62px);
+  line-height:1;
+  margin:12px 0 20px;
+}
+
+.about p{
+  color:#aaa;
+  margin-bottom:16px;
+}
+
+.stats{
+  display:flex;
+  gap:35px;
+  margin-top:30px;
+  flex-wrap:wrap;
+}
+
+.stat strong{
+  display:block;
+  color:#d4af37;
+  font-family:"Cormorant Garamond",serif;
+  font-size:38px;
+}
+
+.stat span{
+  color:#888;
+  font-size:10px;
+  letter-spacing:1px;
+  text-transform:uppercase;
+}
+
+.quote{
+  border:1px solid rgba(212,175,55,.3);
+  border-radius:22px;
+  padding:45px;
+  background:linear-gradient(145deg,#171717,#0c0c0c);
+}
+
+.quote-mark{
+  color:#d4af37;
+  font-family:Georgia,serif;
+  font-size:80px;
+  line-height:.5;
+}
+
+.quote p{
+  color:#fff;
+  font-family:"Cormorant Garamond",serif;
+  font-size:36px;
+  line-height:1.1;
+  margin:30px 0;
+}
+
+/* CONTACT */
+.contact{
+  background:#111;
+}
+
+.contact-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:15px;
+}
+
+.contact-card{
+  border:1px solid rgba(212,175,55,.22);
+  border-radius:16px;
+  padding:23px 16px;
+  text-align:center;
+  background:#171717;
+  transition:.25s;
+}
+
+.contact-card:hover{
+  border-color:#d4af37;
+  transform:translateY(-4px);
+}
+
+.contact-card .icon{
+  font-size:25px;
+  color:#d4af37;
+  display:block;
+  margin-bottom:8px;
+}
+
+.contact-card small{
+  display:block;
+  color:#888;
+  font-size:9px;
+  letter-spacing:2px;
+  font-weight:800;
+}
+
+.contact-card strong{
+  display:block;
+  font-size:13px;
+  margin:5px 0;
+  word-break:break-word;
+}
+
+.contact-card p{
+  color:#777;
+  font-size:10px;
+}
+
+/* LOCATION */
+.location{
+  margin-top:25px;
+  padding:35px;
+  border-radius:22px;
+  background:#050505;
+  border:1px solid rgba(212,175,55,.25);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:30px;
+}
+
+.location h3{
+  color:#d4af37;
+  font-family:"Cormorant Garamond",serif;
+  font-size:35px;
+}
+
+.location p{
+  color:#999;
+  margin:5px 0 18px;
+}
+
+/* FOOTER */
+footer{
+  background:#050505;
+  border-top:1px solid rgba(212,175,55,.2);
+  padding:35px 0;
+}
+
+.footer{
+  display:flex;
+  justify-content:space-between;
+  gap:20px;
+  align-items:center;
+}
+
+.footer p{
+  color:#777;
+  font-size:11px;
+}
+
+/* FLOATING WHATSAPP */
+.whatsapp{
+  position:fixed;
+  right:18px;
+  bottom:18px;
+  z-index:200;
+  background:#25d366;
+  color:#fff;
+  padding:13px 18px;
+  border-radius:30px;
+  font-size:12px;
+  font-weight:800;
+  box-shadow:0 8px 25px rgba(0,0,0,.4);
+}
+
+/* MOBILE */
+@media(max-width:850px){
+
+  nav{
+    display:none;
+  }
+
+  .gallery{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .about-grid{
+    grid-template-columns:1fr;
+  }
+
+  .contact-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .location{
+    flex-direction:column;
+    align-items:flex-start;
+  }
+}
+
+@media(max-width:560px){
+
+  .nav{
+    min-height:64px;
+  }
+
+  .logo{
+    font-size:22px;
+  }
+
+  .nav-btn{
+    padding:9px 13px;
+  }
+
+  .hero{
+    min-height:700px;
+  }
+
+  .hero-content{
+    padding:70px 0;
+  }
+
+  .hero h1{
+    font-size:53px;
+  }
+
+  .hero p{
+    font-size:14px;
+  }
+
+  section{
+    padding:75px 0;
+  }
+
+  .gallery{
+    grid-template-columns:1fr;
+  }
+
+  .card img{
+    height:360px;
+  }
+
+  .contact-grid{
+    grid-template-columns:1fr;
+  }
+
+  .quote{
+    padding:30px;
+  }
+
+  .quote p{
+    font-size:30px;
+  }
+
+  .footer{
+    flex-direction:column;
+    align-items:flex-start;
+  }
+
+  .whatsapp{
+    right:12px;
+    bottom:12px;
+  }
+}
+</style>
 </head>
+
 <body>
-  <header class="topbar">
-    <div class="container nav">
-      <a class="brand" href="#home"><span>ST</span> ENTERPRISE</a>
-      <nav>
-        <a href="#products">Products</a>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
-      </nav>
-      <a class="nav-cta" href="https://wa.me/917006144420?text=Hello%20ST%20ENTERPRISE%2C%20I%20am%20interested%20in%20your%20wedding%20event%20items." target="_blank" rel="noopener">WhatsApp</a>
+
+<header>
+  <div class="container nav">
+
+    <a href="#home" class="logo">
+      <span>S T</span> ENTERPRISE
+    </a>
+
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#products">Products</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <a class="nav-btn"
+       href="https://wa.me/917006144420?text=Hello%20S%20T%20ENTERPRISE%2C%20I%20want%20to%20enquire%20about%20your%20products."
+       target="_blank">
+       WhatsApp
+    </a>
+
+  </div>
+</header>
+
+
+<main>
+
+<!-- HERO -->
+<section id="home" class="hero">
+
+  <div class="container hero-content">
+
+    <div class="badge">
+      WEDDING • EVENT • DECORATION
     </div>
-  </header>
 
-  <main>
-    <section id="home" class="hero">
-      <div class="hero-overlay"></div>
-      <div class="container hero-content">
-        <p class="eyebrow">WEDDING • EVENT • DECORATION</p>
-        <h1>Make Every Celebration<br><em>Beautiful & Memorable</em></h1>
-        <p class="hero-text">Premium wedding and event decoration items, crafted and supplied by ST ENTERPRISE, Meerut.</p>
-        <div class="hero-actions">
-          <a class="btn primary" href="#products">Explore Products</a>
-          <a class="btn light" href="https://wa.me/917006144420?text=Hello%20ST%20ENTERPRISE%2C%20please%20share%20your%20product%20catalogue%20and%20prices." target="_blank" rel="noopener">Get Catalogue on WhatsApp</a>
-        </div>
-      </div>
-    </section>
+    <h1>
+      Make Every Event
+      <span>Beautiful.</span>
+    </h1>
 
-    <section id="products" class="section">
-      <div class="container">
-        <div class="section-heading">
-          <p class="eyebrow">OUR COLLECTION</p>
-          <h2>Wedding & Event Essentials</h2>
-          <p>Browse some of our decorative products and event setups. For colours, sizes, bulk orders and pricing, contact us directly.</p>
-        </div>
+    <p>
+      Premium wedding and event decoration items,
+      manufactured and supplied by S T ENTERPRISE,
+      Ajrara, Meerut.
+    </p>
 
-        <div class="gallery">
-          <article class="card"><img src="images/product-1.jpeg" alt="Decorative floral hanging garlands"><div class="card-body"><h3>Floral Hanging Garlands</h3><a href="https://wa.me/917006144420?text=I%20want%20details%20about%20Floral%20Hanging%20Garlands." target="_blank">Enquire on WhatsApp →</a></div></article>
-          <article class="card"><img src="images/product-2.jpeg" alt="Large tricolour floral decorative installation"><div class="card-body"><h3>Floral Event Installations</h3><a href="https://wa.me/917006144420?text=I%20want%20details%20about%20Floral%20Event%20Installations." target="_blank">Enquire on WhatsApp →</a></div></article>
-          <article class="card"><img src="images/product-3.jpeg" alt="Royal wedding chairs and decorative stage table"><div class="card-body"><h3>Royal Wedding Chairs</h3><a href="https://wa.me/917006144420?text=I%20want%20details%20about%20Royal%20Wedding%20Chairs." target="_blank">Enquire on WhatsApp →</a></div></article>
-          <article class="card"><img src="images/product-4.jpeg" alt="Illuminated angel wings decoration"><div class="card-body"><h3>LED Angel Wings</h3><a href="https://wa.me/917006144420?text=I%20want%20details%20about%20LED%20Angel%20Wings." target="_blank">Enquire on WhatsApp →</a></div></article>
-          <article class="card"><img src="images/product-5.jpeg" alt="Illuminated star and flower decoration"><div class="card-body"><h3>LED Decorative Stands</h3><a href="https://wa.me/917006144420?text=I%20want%20details%20about%20LED%20Decorative%20Stands." target="_blank">Enquire on WhatsApp →</a></div></article>
-          <article class="card"><img src="images/product-6.jpeg" alt="Decorative round mirror"><div class="card-body"><h3>Decorative Mirrors</h3><a href="https://wa.me/917006144420?text=I%20want%20details%20about%20Decorative%20Mirrors." target="_blank">Enquire on WhatsApp →</a></div></article>
-          <article class="card wide"><img src="images/product-7.jpeg" alt="Luxury floral wedding entrance setup"><div class="card-body"><h3>Luxury Wedding Entrances</h3><a href="https://wa.me/917006144420?text=I%20want%20details%20about%20Luxury%20Wedding%20Entrances." target="_blank">Enquire on WhatsApp →</a></div></article>
-          <article class="card"><img src="images/product-8.jpeg" alt="Illuminated leaf-shaped event decoration"><div class="card-body"><h3>LED Leaf Decorations</h3><a href="https://wa.me/917006144420?text=I%20want%20details%20about%20LED%20Leaf%20Decorations." target="_blank">Enquire on WhatsApp →</a></div></article>
-          <article class="card"><img src="images/product-9.jpeg" alt="Floral arch walkway decoration"><div class="card-body"><h3>Floral Arch Walkways</h3><a href="https://wa.me/917006144420?text=I%20want%20details%20about%20Floral%20Arch%20Walkways." target="_blank">Enquire on WhatsApp →</a></div></article>
-          <article class="card"><img src="images/product-10.jpeg" alt="Luxury illuminated angel wings wedding backdrop"><div class="card-body"><h3>Wedding Photo Backdrops</h3><a href="https://wa.me/917006144420?text=I%20want%20details%20about%20Wedding%20Photo%20Backdrops." target="_blank">Enquire on WhatsApp →</a></div></article>
-        </div>
-      </div>
-    </section>
+    <div class="buttons">
 
-    <section id="about" class="about">
-      <div class="container about-grid">
-        <div>
-          <p class="eyebrow">ABOUT ST ENTERPRISE</p>
-          <h2>Decoration products for moments that matter.</h2>
-          <p>ST ENTERPRISE is a wedding and event decoration items manufacturer and supplier based in Ajrara, Meerut, Uttar Pradesh.</p>
-          <p>We offer decorative floral items, wedding seating, LED decorations, entrance pieces, photo backdrops and other event essentials. Contact us for product availability, custom requirements and bulk orders.</p>
-          <div class="stats">
-            <div><strong>10+</strong><span>Product Styles</span></div>
-            <div><strong>Bulk</strong><span>Order Support</span></div>
-            <div><strong>Direct</strong><span>WhatsApp Enquiry</span></div>
-          </div>
-        </div>
-        <div class="quote-box">
-          <div class="quote-mark">“</div>
-          <p>Elegant details. Reliable supply. Beautiful celebrations.</p>
-          <span>— ST ENTERPRISE</span>
-        </div>
-      </div>
-    </section>
+      <a class="btn gold" href="#products">
+        Explore Products
+      </a>
 
-    <section id="contact" class="contact section">
-      <div class="container">
-        <div class="section-heading">
-          <p class="eyebrow">GET IN TOUCH</p>
-          <h2>Let’s plan your next event.</h2>
-          <p>Ask for prices, product availability, colours, sizes or bulk-order details.</p>
-        </div>
-        <div class="contact-grid">
-          <a class="contact-card" href="https://wa.me/917006144420?text=Hello%20ST%20ENTERPRISE%2C%20I%20would%20like%20to%20enquire%20about%20your%20wedding%20event%20items." target="_blank" rel="noopener">
-            <span class="icon">◉</span><div><small>WHATSAPP</small><strong>+91 70061 44420</strong><p>Chat with us directly</p></div>
-          </a>
-          <a class="contact-card" href="mailto:tayyabali64200@gmail.com">
-            <span class="icon">✉</span><div><small>EMAIL</small><strong>tayyabali64200@gmail.com</strong><p>Send us your enquiry</p></div>
-          </a>
-          <a class="contact-card" href="https://share.google/QiFMJJFF0xAn9dg6Y" target="_blank" rel="noopener">
-            <span class="icon">⌖</span><div><small>VISIT US</small><strong>Ajrara, Meerut</strong><p>Open location in Google Maps</p></div>
-          </a>
-        </div>
-        <div class="map-box">
-          <div>
-            <p class="eyebrow">OUR LOCATION</p>
-            <h3>ST ENTERPRISE</h3>
-            <p>Village Ajrara, District Meerut, Uttar Pradesh, India</p>
-            <a class="btn primary" href="https://share.google/QiFMJJFF0xAn9dg6Y" target="_blank" rel="noopener">Open Google Maps</a>
-          </div>
-          <div class="map-placeholder"><span>📍</span><strong>Ajrara, Meerut</strong><small>Tap “Open Google Maps” for navigation</small></div>
-        </div>
-      </div>
-    </section>
-  </main>
+      <a class="btn dark-btn"
+         href="https://wa.me/917006144420?text=Hello%20S%20T%20ENTERPRISE%2C%20please%20share%20your%20product%20catalogue%20and%20prices."
+         target="_blank">
+        Get Catalogue on WhatsApp
+      </a>
 
-  <footer>
-    <div class="container footer">
-      <div><a class="brand" href="#home"><span>ST</span> ENTERPRISE</a><p>Wedding & Event Decoration Items</p></div>
-      <p>© 2026 ST ENTERPRISE. All rights reserved.</p>
     </div>
-  </footer>
 
-  <a class="floating-wa" href="https://wa.me/917006144420?text=Hello%20ST%20ENTERPRISE%2C%20I%20am%20interested%20in%20your%20wedding%20event%20items." target="_blank" rel="noopener" aria-label="Chat on WhatsApp">WhatsApp</a>
+  </div>
+
+</section>
+
+
+<!-- PRODUCTS -->
+<section id="products" class="products">
+
+  <div class="container">
+
+    <div class="heading">
+      <small>OUR COLLECTION</small>
+      <h2>Wedding & Event Products</h2>
+      <p>
+        Explore our decoration products.
+        Contact us for prices, colours, sizes and bulk orders.
+      </p>
+    </div>
+
+
+    <div class="gallery">
+
+      <article class="card">
+        <img src="product-1.jpeg" alt="Wedding decoration product">
+        <div class="card-body">
+          <h3>Floral Hanging Garlands</h3>
+          <p>Beautiful decorative hanging setup.</p>
+          <a href="https://wa.me/917006144420?text=I%20want%20details%20about%20Floral%20Hanging%20Garlands." target="_blank">Enquire on WhatsApp →</a>
+        </div>
+      </article>
+
+
+      <article class="card">
+        <img src="product-2.jpeg" alt="Floral event installation">
+        <div class="card-body">
+          <h3>Floral Event Installations</h3>
+          <p>Perfect for wedding and event decoration.</p>
+          <a href="https://wa.me/917006144420?text=I%20want%20details%20about%20Floral%20Event%20Installations." target="_blank">Enquire on WhatsApp →</a>
+        </div>
+      </article>
+
+
+      <article class="card">
+        <img src="product-3.jpeg" alt="Royal wedding chairs">
+        <div class="card-body">
+          <h3>Royal Wedding Chairs</h3>
+          <p>Premium seating for special occasions.</p>
+          <a href="https://wa.me/917006144420?text=I%20want%20details%20about%20Royal%20Wedding%20Chairs." target="_blank">Enquire on WhatsApp →</a>
+        </div>
+      </article>
+
+
+      <article class="card">
+        <img src="product-4.jpeg" alt="LED angel wings decoration">
+        <div class="card-body">
+          <h3>LED Angel Wings</h3>
+          <p>Attractive illuminated decoration.</p>
+          <a href="https://wa.me/917006144420?text=I%20want%20details%20about%20LED%20Angel%20Wings." target="_blank">Enquire on WhatsApp →</a>
+        </div>
+      </article>
+
+
+      <article class="card">
+        <img src="product-5.jpeg" alt="LED decorative stand">
+        <div class="card-body">
+          <h3>LED Decorative Stands</h3>
+          <p>Elegant lighting for events.</p>
+          <a href="https://wa.me/917006144420?text=I%20want%20details%20about%20LED%20Decorative%20Stands." target="_blank">Enquire on WhatsApp →</a>
+        </div>
+      </article>
+
+
+      <article class="card">
+        <img src="product-6.jpeg" alt="Decorative mirror">
+        <div class="card-body">
+          <h3>Decorative Mirrors</h3>
+          <p>Stylish mirror decoration pieces.</p>
+          <a href="https://wa.me/917006144420?text=I%20want%20details%20about%20Decorative%20Mirrors." target="_blank">Enquire on WhatsApp →</a>
+        </div>
+      </article>
+
+
+      <article class="card">
+        <img src="product-7.jpeg" alt="Luxury wedding entrance">
+        <div class="card-body">
+          <h3>Luxury Wedding Entrances</h3>
+          <p>Premium entrance decoration setups.</p>
+          <a href="https://wa.me/917006144420?text=I%20want%20details%20about%20Luxury%20Wedding%20Entrances." target="_blank">Enquire on WhatsApp →</a>
+        </div>
+      </article>
+
+
+      <article class="card">
+        <img src="product-8.jpeg" alt="LED leaf decoration">
+        <div class="card-body">
+          <h3>LED Leaf Decorations</h3>
+          <p>Beautiful illuminated event pieces.</p>
+          <a href="https://wa.me/917006144420?text=I%20want%20details%20about%20LED%20Leaf%20Decorations." target="_blank">Enquire on WhatsApp →</a>
+        </div>
+      </article>
+
+
+      <article class="card">
+        <img src="product-9.jpeg" alt="Floral arch walkway">
+        <div class="card-body">
+          <h3>Floral Arch Walkways</h3>
+          <p>Elegant floral decoration for events.</p>
+          <a href="https://wa.me/917006144420?text=I%20want%20details%20about%20Floral%20Arch%20Walkways." target="_blank">Enquire on WhatsApp →</a>
+        </div>
+      </article>
+
+
+      <article class="card">
+        <img src="product-10.jpeg" alt="Wedding photo backdrop">
+        <div class="card-body">
+          <h3>Wedding Photo Backdrops</h3>
+          <p>Beautiful backgrounds for memorable photos.</p>
+          <a href="https://wa.me/917006144420?text=I%20want%20details%20about%20Wedding%20Photo%20Backdrops." target="_blank">Enquire on WhatsApp →</a>
+        </div>
+      </article>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- ABOUT -->
+<section id="about" class="about">
+
+  <div class="container about-grid">
+
+    <div>
+
+      <small style="color:#d4af37;letter-spacing:3px;font-size:11px;font-weight:800;">
+        ABOUT S T ENTERPRISE
+      </small>
+
+      <h2>
+        Decoration products for
+        beautiful celebrations.
+      </h2>
+
+      <p>
+        S T ENTERPRISE is a wedding and event decoration
+        items manufacturer and supplier based in Ajrara,
+        Meerut, Uttar Pradesh.
+      </p>
+
+      <p>
+        We offer decorative floral items, wedding seating,
+        LED decorations, entrance pieces, photo backdrops
+        and other event essentials.
+      </p>
+
+      <div class="stats">
+
+        <div class="stat">
+          <strong>10+</strong>
+          <span>Product Styles</span>
+        </div>
+
+        <div class="stat">
+          <strong>Bulk</strong>
+          <span>Order Support</span>
+        </div>
+
+        <div class="stat">
+          <strong>Direct</strong>
+          <span>WhatsApp Enquiry</span>
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="quote">
+
+      <div class="quote-mark">“</div>
+
+      <p>
+        Elegant details.
+        Reliable supply.
+        Beautiful celebrations.
+      </p>
+
+      <strong style="color:#d4af37;font-size:11px;letter-spacing:2px;">
+        — S T ENTERPRISE
+      </strong>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- CONTACT -->
+<section id="contact" class="contact">
+
+  <div class="container">
+
+    <div class="heading">
+
+      <small>GET IN TOUCH</small>
+
+      <h2>Let's plan your next event.</h2>
+
+      <p>
+        Ask for prices, product availability,
+        colours, sizes or bulk-order details.
+      </p>
+
+    </div>
+
+
+    <div class="contact-grid">
+
+      <a class="contact-card"
+         href="https://wa.me/917006144420"
+         target="_blank">
+
+        <span class="icon">💬</span>
+
+        <small>WHATSAPP</small>
+
+        <strong>+91 70061 44420</strong>
+
+        <p>Chat with us</p>
+
+      </a>
+
+
+      <a class="contact-card"
+         href="tel:+918755674770">
+
+        <span class="icon">📞</span>
+
+        <small>CALLING</small>
+
+        <strong>+91 87556 684770</strong>
+
+        <p>Call us directly</p>
+
+      </a>
+
+
+      <a class="contact-card"
+         href="https://instagram.com/s_t_enterprise"
+         target="_blank">
+
+        <span class="icon">📸</span>
+
+        <small>INSTAGRAM</small>
+
+        <strong>@s_t_enterprise</strong>
+
+        <p>Follow us</p>
+
+      </a>
+
+
+      <a class="contact-card"
+         href="mailto:tayyabali64200@gmail.com">
+
+        <span class="icon">✉️</span>
+
+        <small>EMAIL</small>
+
+        <strong>tayyabali64200@gmail.com</strong>
+
+        <p>Send enquiry</p>
+
+      </a>
+
+    </div>
+
+
+    <div class="location">
+
+      <div>
+
+        <small style="color:#d4af37;letter-spacing:2px;font-size:10px;font-weight:800;">
+          OUR LOCATION
+        </small>
+
+        <h3>S T ENTERPRISE</h3>
+
+        <p>
+          Village Ajrara, District Meerut,
+          Uttar Pradesh, India
+        </p>
+
+        <a class="btn gold"
+           href="https://share.google/QiFMJJFF0xAn9dg6Y"
+           target="_blank">
+           Open Google Maps
+        </a>
+
+      </div>
+
+      <div style="font-size:70px;">
+        📍
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+</main>
+
+
+<footer>
+
+  <div class="container footer">
+
+    <div>
+
+      <div class="logo">
+        <span>S T</span> ENTERPRISE
+      </div>
+
+      <p>Wedding & Event Decoration Manufacturer & Supplier</p>
+
+    </div>
+
+    <p>
+      © 2026 S T ENTERPRISE. All rights reserved.
+    </p>
+
+  </div>
+
+</footer>
+
+
+<a class="whatsapp"
+   href="https://wa.me/917006144420?text=Hello%20S%20T%20ENTERPRISE%2C%20I%20am%20interested%20in%20your%20wedding%20event%20items."
+   target="_blank">
+   💬 WhatsApp
+</a>
+
 </body>
 </html>
