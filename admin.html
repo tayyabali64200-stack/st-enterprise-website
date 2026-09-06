@@ -74,9 +74,9 @@ button{width:100%;padding:13px;margin-top:15px;background:#d4af37;color:#000;bor
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-const URL="https://woiicqehdpjjoztundqe.supabase.co";
+const SUPABASE_URL="https://woiicqehdpjjoztundqe.supabase.co";
 const KEY="sb_publishable_u7HOao33jfANYAi8BEIjxQ_jluHk17f";
-const db=supabase.createClient(URL,KEY);
+const db=supabase.createClient(SUPABASE_URL,KEY);
 
 async function login(){
  const {error}=await db.auth.signInWithPassword({
