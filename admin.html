@@ -2,221 +2,166 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>ST ENTERPRISE Admin</title>
-
 <style>
 *{box-sizing:border-box}
-body{
-  margin:0;
-  font-family:Arial,sans-serif;
-  background:#080808;
-  color:white;
-}
-.container{
-  max-width:600px;
-  margin:auto;
-  padding:25px 18px;
-}
-h1{
-  color:#d4af37;
-  text-align:center;
-  margin-bottom:5px;
-}
-.subtitle{
-  text-align:center;
-  color:#aaa;
-  margin-bottom:25px;
-}
-.card{
-  background:#151515;
-  border:1px solid #333;
-  border-radius:15px;
-  padding:20px;
-  margin-bottom:18px;
-}
-label{
-  display:block;
-  margin:15px 0 7px;
-  color:#d4af37;
-  font-weight:bold;
-}
-input,textarea{
-  width:100%;
-  padding:13px;
-  border-radius:9px;
-  border:1px solid #444;
-  background:#222;
-  color:white;
-  font-size:16px;
-}
-textarea{
-  min-height:120px;
-  resize:vertical;
-}
-button{
-  width:100%;
-  padding:14px;
-  margin-top:18px;
-  border:0;
-  border-radius:10px;
-  background:#d4af37;
-  color:#000;
-  font-size:17px;
-  font-weight:bold;
-}
-button:active{
-  transform:scale(.98);
-}
-.note{
-  color:#aaa;
-  font-size:13px;
-  line-height:1.5;
-}
-.success{
-  display:none;
-  background:#174d25;
-  padding:12px;
-  border-radius:8px;
-  margin-top:15px;
-  color:#8cff9b;
-}
+body{margin:0;font-family:Arial;background:#080808;color:white}
+.container{max-width:650px;margin:auto;padding:20px}
+h1{text-align:center;color:#d4af37}
+.card{background:#151515;border:1px solid #333;border-radius:15px;padding:18px;margin:15px 0}
+label{display:block;color:#d4af37;font-weight:bold;margin:12px 0 6px}
+input,textarea{width:100%;padding:12px;background:#222;color:white;border:1px solid #444;border-radius:8px;font-size:16px}
+textarea{min-height:90px}
+button{width:100%;padding:13px;margin-top:15px;background:#d4af37;color:#000;border:0;border-radius:8px;font-weight:bold;font-size:16px}
+.hidden{display:none}
+.product{border-top:1px solid #444;padding:15px 0}
+.product img{width:100%;max-height:220px;object-fit:cover;border-radius:8px}
+#status{color:#8cff9b}
 </style>
 </head>
-
 <body>
-
 <div class="container">
 
 <h1>ST ENTERPRISE</h1>
-<div class="subtitle">Website Admin Panel</div>
 
-<div class="card">
-
-<label>Business Name</label>
-<input id="businessName" value="S T ENTERPRISE">
-
-<label>Tagline</label>
-<input id="tagline" value="Wedding • Event • Decoration">
-
-<label>Website Description</label>
-<textarea id="description">Premium wedding and event decoration items, manufactured and supplied by S T ENTERPRISE, Ajrara, Meerut.</textarea>
-
-<label>WhatsApp Number</label>
-<input id="whatsapp" value="7006144420">
-
-<label>Calling Number</label>
-<input id="calling" value="87556684770">
-
+<div id="loginBox" class="card">
+<h2>Admin Login</h2>
 <label>Email</label>
-<input id="email" value="tayyabali64200@gmail.com">
-
-<label>Instagram</label>
-<input id="instagram" value="@s_t_enterprise">
-
-<label>Address</label>
-<textarea id="address">Vill. Ajrara, Dist. Meerut, Uttar Pradesh</textarea>
-
-<button onclick="saveData()">SAVE DETAILS</button>
-
-<div id="success" class="success">
-✅ Details saved successfully!
+<input id="email" type="email" value="tayyabali64200@gmail.com">
+<label>Password</label>
+<input id="password" type="password" placeholder="Admin Password">
+<button onclick="login()">LOGIN</button>
+<p id="loginMsg"></p>
 </div>
 
+<div id="adminBox" class="hidden">
+
+<div class="card">
+<h2 style="color:#d4af37">Add Product</h2>
+
+<label>Product Name</label>
+<input id="name" placeholder="Royal Sofa">
+
+<label>Description</label>
+<textarea id="description" placeholder="Product details"></textarea>
+
+<label>Price</label>
+<input id="price" type="number" placeholder="7500">
+
+<label>Category</label>
+<input id="category" placeholder="Sofa">
+
+<label>Stock</label>
+<input id="stock" type="number" value="0">
+
+<label>Product Photo</label>
+<input id="photo" type="file" accept="image/*">
+
+<button onclick="addProduct()">ADD PRODUCT</button>
+<p id="status"></p>
 </div>
 
 <div class="card">
-
-<h2 style="color:#d4af37;">Products</h2>
-
-<label>Product 1 Name</label>
-<input id="product1" placeholder="Example: Royal Sofa">
-
-<label>Product 2 Name</label>
-<input id="product2" placeholder="Example: Wedding Stage">
-
-<label>Product 3 Name</label>
-<input id="product3" placeholder="Example: Crystal Jhumer">
-
-<label>Product 4 Name</label>
-<input id="product4" placeholder="Example: Entry Gate">
-
-<button onclick="saveProducts()">SAVE PRODUCTS</button>
-
-<div id="productSuccess" class="success">
-✅ Products saved successfully!
+<h2 style="color:#d4af37">Products</h2>
+<div id="products">Loading...</div>
 </div>
 
-</div>
-
-<div class="card">
-
-<h2 style="color:#d4af37;">Important</h2>
-
-<p class="note">
-Ye admin panel website ki information ko browser me save karega.
-Public website par permanently changes dikhane ke liye
-ek baar website ko is admin system se connect karna hoga.
-</p>
+<button onclick="logout()">LOGOUT</button>
 
 </div>
-
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
+const URL="https://woiicqehdpjjoztundqe.supabase.co";
+const KEY="sb_publishable_u7HOao33jfANYAi8BEIjxQ_jluHk17f";
+const db=supabase.createClient(URL,KEY);
 
-function saveData(){
-
-localStorage.setItem("st_businessName",
-document.getElementById("businessName").value);
-
-localStorage.setItem("st_tagline",
-document.getElementById("tagline").value);
-
-localStorage.setItem("st_description",
-document.getElementById("description").value);
-
-localStorage.setItem("st_whatsapp",
-document.getElementById("whatsapp").value);
-
-localStorage.setItem("st_calling",
-document.getElementById("calling").value);
-
-localStorage.setItem("st_email",
-document.getElementById("email").value);
-
-localStorage.setItem("st_instagram",
-document.getElementById("instagram").value);
-
-localStorage.setItem("st_address",
-document.getElementById("address").value);
-
-document.getElementById("success").style.display="block";
-
-setTimeout(()=>{
-document.getElementById("success").style.display="none";
-},3000);
-
+async function login(){
+ const {error}=await db.auth.signInWithPassword({
+  email:document.getElementById("email").value,
+  password:document.getElementById("password").value
+ });
+ if(error)document.getElementById("loginMsg").textContent=error.message;
+ else showAdmin();
 }
 
-function saveProducts(){
-
-for(let i=1;i<=4;i++){
-localStorage.setItem(
-"st_product"+i,
-document.getElementById("product"+i).value
-);
+async function logout(){
+ await db.auth.signOut();
+ showAdmin();
 }
 
-document.getElementById("productSuccess").style.display="block";
-
-setTimeout(()=>{
-document.getElementById("productSuccess").style.display="none";
-},3000);
-
+async function showAdmin(){
+ const {data}=await db.auth.getSession();
+ document.getElementById("loginBox").className=data.session?"hidden":"card";
+ document.getElementById("adminBox").className=data.session?"":"hidden";
+ if(data.session)loadProducts();
 }
 
+showAdmin();
+  async function addProduct(){
+ const f=document.getElementById("photo").files[0];
+ const status=document.getElementById("status");
+ if(!document.getElementById("name").value||!f){
+  status.textContent="Product name aur photo zaroori hai";
+  return;
+ }
+ status.textContent="Photo upload ho rahi hai...";
+ const file=Date.now()+"-"+f.name.replace(/\s/g,"-");
+ const up=await db.storage.from("product-images").upload(file,f);
+ if(up.error){status.textContent=up.error.message;return}
+ const url=db.storage.from("product-images").getPublicUrl(file).data.publicUrl;
+
+ const latest=await db.from("products").select("id").order("id",{ascending:false}).limit(1);
+ const id=latest.data&&latest.data.length?Number(latest.data[0].id)+1:1;
+
+ const {error}=await db.from("products").insert({
+  id:id,
+  name:document.getElementById("name").value,
+  description:document.getElementById("description").value,
+  image_url:url,
+  price:Number(document.getElementById("price").value)||0,
+  category:document.getElementById("category").value,
+  stock:Number(document.getElementById("stock").value)||0,
+  is_featured:false
+ });
+
+ if(error){status.textContent=error.message;return}
+
+ status.textContent="Product add ho gaya ✅";
+ document.getElementById("name").value="";
+ document.getElementById("description").value="";
+ document.getElementById("price").value="";
+ document.getElementById("category").value="";
+ document.getElementById("stock").value="0";
+ document.getElementById("photo").value="";
+ loadProducts();
+}
+
+async function loadProducts(){
+ const box=document.getElementById("products");
+ const {data,error}=await db.from("products").select("*").order("id",{ascending:false});
+ if(error){box.textContent=error.message;return}
+ if(!data.length){box.textContent="Abhi koi product nahi hai.";return}
+
+ box.innerHTML=data.map(p=>`
+ <div class="product">
+ <img src="${p.image_url||""}">
+ <h3>${p.name}</h3>
+ <p>${p.description||""}</p>
+ <p>₹${p.price||0} | Stock: ${p.stock||0}</p>
+ <button onclick="deleteProduct(${p.id})">DELETE</button>
+ </div>
+ `).join("");
+}
+
+async function deleteProduct(id){
+ if(!confirm("Ye product delete karna hai?"))return;
+ const {error}=await db.from("products").delete().eq("id",id);
+ if(error){alert(error.message);return}
+ loadProducts();
+}
 </script>
-
 </body>
 </html>
