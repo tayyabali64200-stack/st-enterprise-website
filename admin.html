@@ -3,87 +3,79 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>ST ENTERPRISE Admin</title>
+<title>ST ENTERPRISE - Admin</title>
 <style>
 *{box-sizing:border-box}
-body{margin:0;font-family:Arial;background:#080808;color:white}
-.container{max-width:650px;margin:auto;padding:20px}
-h1{text-align:center;color:#d4af37}
-.card{background:#151515;border:1px solid #333;border-radius:15px;padding:18px;margin:15px 0}
-label{display:block;color:#d4af37;font-weight:bold;margin:12px 0 6px}
-input,textarea{width:100%;padding:12px;background:#222;color:white;border:1px solid #444;border-radius:8px;font-size:16px}
-textarea{min-height:90px}
-button{width:100%;padding:13px;margin-top:15px;background:#d4af37;color:#000;border:0;border-radius:8px;font-weight:bold;font-size:16px}
+body{margin:0;background:#111;color:#fff;font-family:Arial,sans-serif;padding:20px}
+.box{max-width:650px;margin:auto;background:#1d1d1d;padding:20px;border-radius:15px}
+h1,h2{text-align:center;color:#d4af37}
+input,textarea,button{width:100%;padding:12px;margin:7px 0;border-radius:8px;border:1px solid #555;font-size:15px}
+input,textarea{background:#292929;color:#fff}
+textarea{min-height:100px}
+button{background:#d4af37;color:#111;border:0;font-weight:bold;cursor:pointer}
+.red{background:#c62828;color:#fff}
 .hidden{display:none}
-.product{border-top:1px solid #444;padding:15px 0}
+.msg{text-align:center;margin:10px 0;color:#ffd54f}
+.product{background:#292929;padding:12px;border-radius:10px;margin:12px 0}
 .product img{width:100%;max-height:220px;object-fit:cover;border-radius:8px}
-#status{color:#8cff9b}
+.product b{font-size:18px}
+.small{color:#bbb}
 </style>
 </head>
+
 <body>
-<div class="container">
+
+<div class="box">
 
 <h1>ST ENTERPRISE</h1>
 
-<div id="loginBox" class="card">
+<div id="loginBox">
 <h2>Admin Login</h2>
-<label>Email</label>
-<input id="email" type="email" value="tayyabali64200@gmail.com">
-<label>Password</label>
-<input id="password" type="password" placeholder="Admin Password">
+<input id="email" type="email" value="tayyabali64200@gmail.com" placeholder="Email">
+<input id="password" type="password" placeholder="Password">
 <button onclick="login()">LOGIN</button>
-<p id="loginMsg"></p>
+<div id="loginMsg" class="msg"></div>
 </div>
 
 <div id="adminBox" class="hidden">
 
-<div class="card">
-<h2 style="color:#d4af37">Add Product</h2>
+<button class="red" onclick="logout()">LOGOUT</button>
 
-<label>Product Name</label>
-<input id="name" placeholder="Royal Sofa">
+<h2>Add Product</h2>
 
-<label>Description</label>
-<textarea id="description" placeholder="Product details"></textarea>
-
-<label>Price</label>
-<input id="price" type="number" placeholder="7500">
-
-<label>Category</label>
-<input id="category" placeholder="Sofa">
-
-<label>Stock</label>
-<input id="stock" type="number" value="0">
-
-<label>Product Photo</label>
+<input id="name" placeholder="Product Name">
+<textarea id="description" placeholder="Product Description"></textarea>
+<input id="category" placeholder="Category e.g. Wedding Stage">
+<input id="price" type="number" placeholder="Price">
+<input id="stock" type="number" placeholder="Stock">
 <input id="photo" type="file" accept="image/*">
 
 <button onclick="addProduct()">ADD PRODUCT</button>
-<p id="status"></p>
-</div>
 
-<div class="card">
-<h2 style="color:#d4af37">Products</h2>
+<div id="msg" class="msg"></div>
+
+<h2>Products</h2>
 <div id="products">Loading...</div>
-</div>
-
-<button onclick="logout()">LOGOUT</button>
 
 </div>
 </div>
 
 <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+
+<script>
 const SUPABASE_URL="https://woiicqehdpjjoztundqe.supabase.co";
-const KEY="sb_publishable_u7HOao33jfANYAi8BEIjxQ_jluHk17f";
-const db=supabase.createClient(SUPABASE_URL,KEY);
+const SUPABASE_KEY="sb_publishable_u7HOao33jfANYAi8BEIjxQ_jluHk17f";
+const db=supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
 
 async function login(){
- const {error}=await db.auth.signInWithPassword({
-  email:document.getElementById("email").value,
-  password:document.getElementById("password").value
- });
- if(error)document.getElementById("loginMsg").textContent=error.message;
- else showAdmin();
+ const email=document.getElementById("email").value.trim();
+ const password=document.getElementById("password").value;
+ const msg=document.getElementById("loginMsg");
+ msg.textContent="Login ho raha hai...";
+ const {error}=await db.auth.signInWithPassword({email,password});
+ if(error){msg.textContent="❌ "+error.message;return}
+ msg.textContent="";
+ showAdmin();
 }
 
 async function logout(){
@@ -93,74 +85,113 @@ async function logout(){
 
 async function showAdmin(){
  const {data}=await db.auth.getSession();
- document.getElementById("loginBox").className=data.session?"hidden":"card";
- document.getElementById("adminBox").className=data.session?"":"hidden";
- if(data.session)loadProducts();
+ const logged=!!data.session;
+ document.getElementById("loginBox").classList.toggle("hidden",logged);
+ document.getElementById("adminBox").classList.toggle("hidden",!logged);
+ if(logged) loadProducts();
 }
 
-showAdmin();
-  async function addProduct(){
- const f=document.getElementById("photo").files[0];
- const status=document.getElementById("status");
- if(!document.getElementById("name").value||!f){
-  status.textContent="Product name aur photo zaroori hai";
-  return;
+async function addProduct(){
+ const msg=document.getElementById("msg");
+ const name=document.getElementById("name").value.trim();
+ const description=document.getElementById("description").value.trim();
+ const category=document.getElementById("category").value.trim();
+ const price=Number(document.getElementById("price").value)||0;
+ const stock=Number(document.getElementById("stock").value)||0;
+ const photo=document.getElementById("photo").files[0];
+
+ if(!name){msg.textContent="❌ Product name likho";return}
+ if(!photo){msg.textContent="❌ Product photo select karo";return}
+
+ msg.textContent="⏳ Product save ho raha hai...";
+
+ const {data:last}=await db.from("products").select("id").order("id",{ascending:false}).limit(1);
+ const newId=last&&last.length ? Number(last[0].id)+1 : 1;
+
+ const fileName=Date.now()+"-"+photo.name.replace(/[^a-zA-Z0-9.-]/g,"-");
+
+ const {error:uploadError}=await db.storage
+ .from("product-images")
+ .upload(fileName,photo);
+
+ if(uploadError){
+   msg.textContent="❌ Photo upload error: "+uploadError.message;
+   return;
  }
- status.textContent="Photo upload ho rahi hai...";
- const file=Date.now()+"-"+f.name.replace(/\s/g,"-");
- const up=await db.storage.from("product-images").upload(file,f);
- if(up.error){status.textContent=up.error.message;return}
- const url=db.storage.from("product-images").getPublicUrl(file).data.publicUrl;
 
- const latest=await db.from("products").select("id").order("id",{ascending:false}).limit(1);
- const id=latest.data&&latest.data.length?Number(latest.data[0].id)+1:1;
+ const {data:urlData}=db.storage.from("product-images").getPublicUrl(fileName);
+ const image_url=urlData.publicUrl;
 
- const {error}=await db.from("products").insert({
-  id:id,
-  name:document.getElementById("name").value,
-  description:document.getElementById("description").value,
-  image_url:url,
-  price:Number(document.getElementById("price").value)||0,
-  category:document.getElementById("category").value,
-  stock:Number(document.getElementById("stock").value)||0,
-  is_featured:false
- });
+ const {error}=await db.from("products").insert([{
+   id:newId,
+   name:name,
+   description:description,
+   category:category,
+   price:price,
+   stock:stock,
+   image_url:image_url,
+   is_featured:false
+ }]);
 
- if(error){status.textContent=error.message;return}
+ if(error){
+   msg.textContent="❌ Product save error: "+error.message;
+   return;
+ }
 
- status.textContent="Product add ho gaya ✅";
+ msg.textContent="✅ Product successfully add ho gaya!";
  document.getElementById("name").value="";
  document.getElementById("description").value="";
- document.getElementById("price").value="";
  document.getElementById("category").value="";
- document.getElementById("stock").value="0";
+ document.getElementById("price").value="";
+ document.getElementById("stock").value="";
  document.getElementById("photo").value="";
+
  loadProducts();
 }
 
 async function loadProducts(){
  const box=document.getElementById("products");
+ box.innerHTML="Loading...";
+
  const {data,error}=await db.from("products").select("*").order("id",{ascending:false});
- if(error){box.textContent=error.message;return}
- if(!data.length){box.textContent="Abhi koi product nahi hai.";return}
+
+ if(error){
+   box.innerHTML="❌ "+error.message;
+   return;
+ }
+
+ if(!data||data.length===0){
+   box.innerHTML="<p class='small'>Abhi koi product nahi hai.</p>";
+   return;
+ }
 
  box.innerHTML=data.map(p=>`
  <div class="product">
- <img src="${p.image_url||""}">
- <h3>${p.name}</h3>
- <p>${p.description||""}</p>
- <p>₹${p.price||0} | Stock: ${p.stock||0}</p>
- <button onclick="deleteProduct(${p.id})">DELETE</button>
+   ${p.image_url?`<img src="${p.image_url}">`:""}
+   <p><b>${p.name||""}</b></p>
+   <p class="small">${p.description||""}</p>
+   <p>Category: ${p.category||"-"}</p>
+   <p>Price: ₹${p.price||0} | Stock: ${p.stock||0}</p>
+   <button class="red" onclick="deleteProduct(${p.id})">DELETE</button>
  </div>
  `).join("");
 }
 
 async function deleteProduct(id){
  if(!confirm("Ye product delete karna hai?"))return;
+
  const {error}=await db.from("products").delete().eq("id",id);
- if(error){alert(error.message);return}
+
+ if(error){
+   alert("Delete error: "+error.message);
+   return;
+ }
+
  loadProducts();
 }
+
+showAdmin();
 </script>
+
 </body>
 </html>
